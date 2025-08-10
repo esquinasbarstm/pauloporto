@@ -42,8 +42,7 @@
     :root{
       --bg:#081222; --bg2:#0d1b35; --card:#0e1b3a; --card2:#0f264e;
       --text:#eef3ff; --muted:#a8b2ca; --accent:#00d68f; --accent2:#6aa5ff; --accent3:#ffd166;
-      --stroke:#172a59; --ok:#22c55e; --warn:#ffc107; --danger:#ef4444;
-      --shadow:0 24px 70px rgba(0,0,0,.5);
+      --stroke:#172a59; --shadow:0 24px 70px rgba(0,0,0,.5);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -120,13 +119,28 @@
     .service h4{margin:0 0 4px; font-size:15px}
     .service p{margin:0; color:var(--muted); font-size:13px}
 
-    /* Pricing / Rotas populares */
-    .pricing{display:grid; grid-template-columns:1fr; gap:12px}
-    .price{background:linear-gradient(180deg,#0f234a,#103061); border:1px solid var(--stroke); border-radius:16px; padding:14px}
-    .price h4{margin:0 0 6px}
-    .small{font-size:12px; color:var(--muted)}
+    /* Rotas com preços */
+    .routes{display:grid; grid-template-columns:1fr; gap:12px}
+    .route{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+      padding:14px; border:1px solid var(--stroke); border-radius:16px;
+      background:linear-gradient(180deg,#0f234a,#103061);
+    }
+    .route h4{margin:0; font-size:16px}
+    .route .meta{color:var(--muted); font-size:13px; margin-top:4px}
+    .route .price{font-weight:900; font-size:18px; white-space:nowrap}
+    .route .price small{opacity:.8; font-weight:700; font-size:12px}
+    .route .cta-mini{margin-top:8px; display:inline-flex; align-items:center; gap:6px; font-weight:800;
+      background:linear-gradient(90deg, var(--accent), #40f1be); color:#062117; padding:8px 10px; border-radius:10px}
+    @media(min-width:768px){ .routes{grid-template-columns:repeat(3,1fr)} }
 
-    /* ===== Depoimentos (glass + drag + autoplay) ===== */
+    /* Badges / Prova social */
+    .badges{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0 4px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:14px;
+      background:linear-gradient(180deg,#0f234a,#103061); border:1px solid var(--stroke); font-weight:800}
+    .badge .star{color:#ffd166; font-size:16px}
+
+    /* Depoimentos (glass + drag + autoplay) */
     .depo-shell{
       position:relative; border-radius:20px; padding:10px 0;
       background:linear-gradient(180deg,var(--card), var(--card2));
@@ -137,14 +151,12 @@
     }
     .depo-shell::before{left:0; background:linear-gradient(90deg, rgba(8,18,34,1), rgba(8,18,34,0));}
     .depo-shell::after{right:0; background:linear-gradient(270deg, rgba(8,18,34,1), rgba(8,18,34,0));}
-
     .depo-scroller{
       display:flex; gap:12px; padding:12px 16px; overflow:auto; scroll-snap-type:x mandatory;
       scrollbar-width:none; -ms-overflow-style:none; position:relative;
       mask-image:linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
     }
     .depo-scroller::-webkit-scrollbar{display:none}
-
     .depo{
       min-width:82%; max-width:82%; scroll-snap-align:center;
       position:relative; padding:14px; border-radius:16px; overflow:hidden;
@@ -154,26 +166,26 @@
       display:flex; align-items:flex-start; gap:12px;
     }
     @media(min-width:768px){ .depo{min-width:44%; max-width:44%; } }
-
     .depo::after{
       content:"“"; position:absolute; right:14px; top:-10px; font-size:56px; line-height:1;
       color:rgba(255,255,255,.08); font-weight:900; pointer-events:none;
     }
-
     .depo-avatar{
       flex:0 0 52px; width:52px; height:52px; border-radius:50%; overflow:hidden;
       border:2px solid rgba(106,165,255,.6); box-shadow:0 6px 20px rgba(0,0,0,.35);
     }
     .depo-avatar img{width:100%; height:100%; object-fit:cover}
-
     .depo-body{display:flex; flex-direction:column; gap:6px}
     .depo-stars{color:#ffd166; letter-spacing:2px; font-size:16px}
     .depo-body p{margin:0; color:var(--text)}
     .depo-name{color:#cfe0ff; font-weight:800; opacity:.9}
-
     .depo-dots{display:flex; gap:6px; justify-content:center; margin:8px 0 6px; opacity:.7}
     .depo-dots i{width:6px; height:6px; border-radius:50%; background:#7fa9ff; opacity:.35}
     .depo-dots i.active{opacity:1}
+
+    /* Mapa */
+    .map-embed{position:relative; width:100%; padding-top:56%; border-radius:20px; overflow:hidden; border:1px solid var(--stroke); box-shadow:var(--shadow)}
+    .map-embed iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
     /* FAQ */
     .faq-item{border:1px solid var(--stroke); border-radius:14px; overflow:hidden}
@@ -195,6 +207,7 @@
     @media (prefers-reduced-motion: reduce){
       .blob, .cta.pulse { animation: none !important; }
       [data-reveal]{transition:none}
+      .depo-shell::before,.depo-shell::after{display:none}
     }
 
     /* Desktop */
@@ -221,6 +234,12 @@
     <span class="tag" data-reveal>Guarapari – ES • Atendimento 24h • Resposta rápida</span>
     <h1 data-reveal style="transition-delay:.05s">Viagens confortáveis e seguras em Guarapari e região</h1>
     <p class="lead" data-reveal style="transition-delay:.1s">Corridas locais, intermunicipais e traslados para aeroportos. <strong>Reserve agora</strong> e garanta seu horário.</p>
+
+    <!-- Badges de prova social -->
+    <div class="badges" data-reveal style="transition-delay:.12s">
+      <span class="badge">🏆 Top Driver em Guarapari</span>
+      <span class="badge"><span class="star">★★★★★</span> 5.0 • 1.000+ avaliações</span>
+    </div>
 
     <!-- HERO GRID -->
     <div class="hero-grid" data-reveal style="transition-delay:.15s">
@@ -249,7 +268,6 @@
           <div class="metric">⏱️ Pontualidade</div>
           <div class="metric">🧳 Aeroporto VIX</div>
         </div>
-        <div class="ribbon">🔥 Hoje: <span style="opacity:.9">vagas limitadas para agendamento</span> • <span style="opacity:.9">garanta seu horário</span></div>
       </div>
     </div>
   </section>
@@ -279,14 +297,67 @@
     </div>
   </section>
 
-  <!-- Rotas populares -->
+  <!-- Rotas populares (preços competitivos) -->
   <section class="wrap">
     <h3 style="margin:0 0 10px">Rotas populares</h3>
-    <div class="pricing" data-reveal>
-      <div class="price"><h4>Guarapari ➜ Vitória (VIX)</h4><div class="small">Agende ida/volta • Horários flexíveis</div></div>
-      <div class="price"><h4>Guarapari ➜ Vila Velha</h4><div class="small">Conforto e segurança no trajeto</div></div>
-      <div class="price"><h4>Guarapari ➜ Anchieta</h4><div class="small">Melhor custo-benefício</div></div>
+
+    <div class="routes" data-reveal>
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Vitória (Centro)</h4>
+          <div class="meta">43–55 km • ~60–75 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Quero%20Guarapari%20%E2%9E%9C%20Vit%C3%B3ria%20(centro)%20hoje.%20Pode%20me%20passar%20disponibilidade%3F" target="_blank" rel="noopener">📲 Reservar</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 119</div>
+      </article>
+
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Aeroporto de Vitória (VIX)</h4>
+          <div class="meta">58–70 km • ~70–90 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Transfer%20para%20o%20Aeroporto%20de%20Vit%C3%B3ria%20(VIX)%20%C3%A0s%20HH%3AMM" target="_blank" rel="noopener">✈️ Transfer</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 149</div>
+      </article>
+
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Vila Velha</h4>
+          <div class="meta">50–60 km • ~65–80 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Guarapari%20%E2%9E%9C%20Vila%20Velha%20(ida%20ou%20ida%2Fvolta)%20%F0%9F%9A%98" target="_blank" rel="noopener">📲 Reservar</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 89</div>
+      </article>
+
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Anchieta</h4>
+          <div class="meta">30–35 km • ~40–50 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Quero%20Guarapari%20%E2%9E%9C%20Anchieta%20agora%20ou%20agendar" target="_blank" rel="noopener">📲 Reservar</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 79</div>
+      </article>
+
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Meaípe / Nova Guarapari</h4>
+          <div class="meta">7–12 km • ~15–25 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Corrida%20interna%20Guarapari%20%E2%9E%9C%20Mea%C3%ADpe%2FNova%20Guarapari" target="_blank" rel="noopener">📲 Reservar</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 29</div>
+      </article>
+
+      <article class="route">
+        <div>
+          <h4>Guarapari ➜ Guarapari (interna)</h4>
+          <div class="meta">3–8 km • ~10–20 min • pedágio: não</div>
+          <a class="cta-mini" href="https://wa.me/5527995176286?text=Preciso%20de%20uma%20corrida%20interna%20em%20Guarapari%20agora" target="_blank" rel="noopener">🚕 Chamar agora</a>
+        </div>
+        <div class="price"><small>a partir de</small><br>R$ 15</div>
+      </article>
     </div>
+
+    <p class="small" style="margin-top:8px">Valores estimados e sujeitos a variações por horário, demanda, condições de trânsito e ponto de embarque.</p>
   </section>
 
   <!-- Depoimentos (com imagens por link) -->
@@ -390,6 +461,19 @@
     </div>
   </section>
 
+  <!-- Mapa de atuação -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">Área de atendimento</h3>
+    <div class="map-embed" data-reveal>
+      <iframe
+        title="Mapa – Paulo Porto, Uber em Guarapari"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Guarapari%20-%20ES&hl=pt-BR&z=12&output=embed">
+      </iframe>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="wrap">
     <h3 style="margin:0 0 10px">Dúvidas frequentes</h3>
@@ -465,7 +549,7 @@
       it.querySelector('.faq-q').addEventListener('click', ()=> it.classList.toggle('open'));
     });
 
-    // ===== Depoimentos: autoplay contínuo + drag, loop infinito =====
+    // Depoimentos: autoplay contínuo + drag, loop infinito
     (function(){
       const scroller = document.getElementById('depoScroller');
       if(!scroller) return;
