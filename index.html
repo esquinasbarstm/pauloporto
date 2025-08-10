@@ -16,11 +16,13 @@
   <meta property="og:image" content="img/preview.jpg" />
   <meta property="og:locale" content="pt_BR" />
 
-  <!-- Preconnect/DNS Prefetch for Sketchfab -->
+  <!-- Preconnect/DNS Prefetch (Sketchfab + imagens) -->
   <link rel="preconnect" href="https://sketchfab.com" />
   <link rel="dns-prefetch" href="//sketchfab.com" />
   <link rel="preconnect" href="https://media.sketchfab.com" />
   <link rel="dns-prefetch" href="//media.sketchfab.com" />
+  <link rel="preconnect" href="https://randomuser.me" />
+  <link rel="dns-prefetch" href="//randomuser.me" />
 
   <!-- Schema -->
   <script type="application/ld+json">
@@ -124,19 +126,54 @@
     .price h4{margin:0 0 6px}
     .small{font-size:12px; color:var(--muted)}
 
-    /* Depoimentos (slider) */
-    .slider{position:relative; overflow:hidden}
-    .track{display:flex; gap:10px; will-change:transform; animation:slide 22s linear infinite}
-    .depo{min-width:78%; background:rgba(15,31,64,.6); border:1px solid var(--stroke); border-radius:16px; padding:14px}
-    .stars{letter-spacing:1px}
-    @keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    /* ===== Depoimentos (glass + drag + autoplay) ===== */
+    .depo-shell{
+      position:relative; border-radius:20px; padding:10px 0;
+      background:linear-gradient(180deg,var(--card), var(--card2));
+      border:1px solid var(--stroke); box-shadow:var(--shadow);
+    }
+    .depo-shell::before,.depo-shell::after{
+      content:""; position:absolute; top:0; bottom:0; width:28px; pointer-events:none; z-index:2;
+    }
+    .depo-shell::before{left:0; background:linear-gradient(90deg, rgba(8,18,34,1), rgba(8,18,34,0));}
+    .depo-shell::after{right:0; background:linear-gradient(270deg, rgba(8,18,34,1), rgba(8,18,34,0));}
 
-    /* CTA ribbon */
-    .ribbon{margin-top:10px; display:flex; gap:10px; align-items:center; background:linear-gradient(90deg, var(--accent3), var(--accent)); color:#082010; padding:10px 12px; border-radius:14px; font-weight:900}
+    .depo-scroller{
+      display:flex; gap:12px; padding:12px 16px; overflow:auto; scroll-snap-type:x mandatory;
+      scrollbar-width:none; -ms-overflow-style:none; position:relative;
+      mask-image:linear-gradient(90deg, transparent 0, #000 28px, #000 calc(100% - 28px), transparent 100%);
+    }
+    .depo-scroller::-webkit-scrollbar{display:none}
 
-    /* WhatsApp sticky bar */
-    .stickyCTA{position:fixed; inset:auto 12px 12px; z-index:90; display:flex; justify-content:center}
-    .stickyCTA a{flex:1; max-width:720px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(90deg, var(--accent), #4dffbe); color:#072319; font-weight:900; padding:14px 16px; border-radius:18px; box-shadow:var(--shadow)}
+    .depo{
+      min-width:82%; max-width:82%; scroll-snap-align:center;
+      position:relative; padding:14px; border-radius:16px; overflow:hidden;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient( to bottom right, rgba(255,255,255,.06), rgba(255,255,255,.03) );
+      backdrop-filter:blur(8px);
+      display:flex; align-items:flex-start; gap:12px;
+    }
+    @media(min-width:768px){ .depo{min-width:44%; max-width:44%; } }
+
+    .depo::after{
+      content:"“"; position:absolute; right:14px; top:-10px; font-size:56px; line-height:1;
+      color:rgba(255,255,255,.08); font-weight:900; pointer-events:none;
+    }
+
+    .depo-avatar{
+      flex:0 0 52px; width:52px; height:52px; border-radius:50%; overflow:hidden;
+      border:2px solid rgba(106,165,255,.6); box-shadow:0 6px 20px rgba(0,0,0,.35);
+    }
+    .depo-avatar img{width:100%; height:100%; object-fit:cover}
+
+    .depo-body{display:flex; flex-direction:column; gap:6px}
+    .depo-stars{color:#ffd166; letter-spacing:2px; font-size:16px}
+    .depo-body p{margin:0; color:var(--text)}
+    .depo-name{color:#cfe0ff; font-weight:800; opacity:.9}
+
+    .depo-dots{display:flex; gap:6px; justify-content:center; margin:8px 0 6px; opacity:.7}
+    .depo-dots i{width:6px; height:6px; border-radius:50%; background:#7fa9ff; opacity:.35}
+    .depo-dots i.active{opacity:1}
 
     /* FAQ */
     .faq-item{border:1px solid var(--stroke); border-radius:14px; overflow:hidden}
@@ -144,7 +181,9 @@
     .faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 14px}
     .faq-item.open .faq-a{max-height:200px; padding:10px 14px 14px}
 
-    /* Footer */
+    /* Footer + Sticky CTA */
+    .stickyCTA{position:fixed; inset:auto 12px 12px; z-index:90; display:flex; justify-content:center}
+    .stickyCTA a{flex:1; max-width:720px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(90deg, var(--accent), #4dffbe); color:#072319; font-weight:900; padding:14px 16px; border-radius:18px; box-shadow:var(--shadow)}
     footer{padding:32px 16px 86px; color:var(--muted)}
     .foot{display:flex; flex-direction:column; gap:6px; align-items:center; text-align:center}
 
@@ -154,7 +193,7 @@
 
     /* Motion reduction */
     @media (prefers-reduced-motion: reduce){
-      .blob, .track, .cta.pulse { animation: none !important; }
+      .blob, .cta.pulse { animation: none !important; }
       [data-reveal]{transition:none}
     }
 
@@ -162,7 +201,6 @@
     @media(min-width:768px){
       .hero-grid{grid-template-columns:1.05fr .95fr}
       .grid{grid-template-columns:repeat(3,1fr)}
-      .depo{min-width:40%}
       .pricing{grid-template-columns:repeat(3,1fr)}
     }
   </style>
@@ -184,9 +222,9 @@
     <h1 data-reveal style="transition-delay:.05s">Viagens confortáveis e seguras em Guarapari e região</h1>
     <p class="lead" data-reveal style="transition-delay:.1s">Corridas locais, intermunicipais e traslados para aeroportos. <strong>Reserve agora</strong> e garanta seu horário.</p>
 
-    <!-- HERO GRID (perfil + 3D + provas) -->
+    <!-- HERO GRID -->
     <div class="hero-grid" data-reveal style="transition-delay:.15s">
-      <!-- Destaque do Paulo no topo -->
+      <!-- Destaque do Paulo -->
       <div class="perfil">
         <div class="avatar-lg"><img src="img/paulo.jpg" alt="Foto de Paulo Porto" loading="eager"/></div>
         <div>
@@ -196,7 +234,7 @@
         </div>
       </div>
 
-      <!-- 360º Virtus (Sketchfab) -->
+      <!-- Virtus 360 -->
       <div class="sketchfab-embed-wrapper" id="virtus360" aria-label="Visualização 360 do Volkswagen Virtus" data-tilt>
         <iframe title="Volkswagen Polo Virtus 2018-2020" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
           allow="autoplay; fullscreen; xr-spatial-tracking"
@@ -251,16 +289,114 @@
     </div>
   </section>
 
-  <!-- Depoimentos slider -->
+  <!-- Depoimentos (com imagens por link) -->
   <section class="wrap">
     <h3 style="margin:0 0 10px">O que os clientes dizem</h3>
-    <div class="slider card" data-reveal>
-      <div class="track">
-        <div class="depo"><div class="stars">★★★★★</div><p>“Motorista atencioso e carro impecável. Cheguei ao VIX no horário certinho!” – <strong>Ana C.</strong></p></div>
-        <div class="depo"><div class="stars">★★★★★</div><p>“Viagem tranquila até Vila Velha. Recomendo demais o Paulo.” – <strong>Rafael M.</strong></p></div>
-        <div class="depo"><div class="stars">★★★★★</div><p>“Atendimento 24h salvou minha madrugada. Excelente!” – <strong>Luiz A.</strong></p></div>
-        <div class="depo"><div class="stars">★★★★★</div><p>“Pontual e educado. Voltarei a contratar.” – <strong>Bianca T.</strong></p></div>
+
+    <div class="depo-shell" aria-label="Avaliações de clientes">
+      <div class="depo-scroller" id="depoScroller">
+        <!-- 10 cards -->
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Foto da cliente Ana Costa" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Motorista atencioso e carro impecável. Cheguei ao VIX no horário certinho!”</p>
+            <strong class="depo-name">Ana C.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt="Foto do cliente Rafael Martins" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Viagem tranquila até Vila Velha. Recomendo demais o Paulo.”</p>
+            <strong class="depo-name">Rafael M.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/men/27.jpg" alt="Foto do cliente Luiz Alves" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Atendimento 24h salvou minha madrugada. Excelente!”</p>
+            <strong class="depo-name">Luiz A.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Foto da cliente Bianca Torres" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Pontual e educado. Voltarei a contratar.”</p>
+            <strong class="depo-name">Bianca T.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto da cliente Camila Duarte" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Guarapari ➜ Anchieta rapidinho e com conforto. Top!”</p>
+            <strong class="depo-name">Camila D.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Foto do cliente Pedro Nascimento" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Agendei ida e volta pro aeroporto. Tudo no horário.”</p>
+            <strong class="depo-name">Pedro N.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/women/81.jpg" alt="Foto da cliente Juliana Rocha" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Carro limpo, motorista educado e preço justo. Amei!”</p>
+            <strong class="depo-name">Juliana R.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/men/71.jpg" alt="Foto do cliente Marcelo Pires" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Reservamos ida/volta. Tudo certinho e sem correria.”</p>
+            <strong class="depo-name">Marcelo P.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/women/16.jpg" alt="Foto da cliente Renata Gomes" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Conhece bem Guarapari. Rotas rápidas e seguras.”</p>
+            <strong class="depo-name">Renata G.</strong>
+          </div>
+        </article>
+
+        <article class="depo">
+          <div class="depo-avatar"><img src="https://randomuser.me/api/portraits/men/4.jpg" alt="Foto do cliente Diego Soares" loading="lazy"></div>
+          <div class="depo-body">
+            <div class="depo-stars" aria-label="5 estrelas">★★★★★</div>
+            <p>“Melhor custo‑benefício para viagens intermunicipais.”</p>
+            <strong class="depo-name">Diego S.</strong>
+          </div>
+        </article>
       </div>
+      <div class="depo-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">Dúvidas frequentes</h3>
+    <div class="card" data-reveal>
+      <div class="faq-item"><button class="faq-q">Como faço para agendar?</button><div class="faq-a"><p>Toque em “WhatsApp agora”, diga origem/destino e horário. Se preferir, envie localização.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Quais formas de pagamento?</button><div class="faq-a"><p>PIX, dinheiro e, sob consulta, transferência.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Atende de madrugada?</button><div class="faq-a"><p>Sim, 24h mediante chamada ou agendamento.</p></div></div>
     </div>
   </section>
 
@@ -308,8 +444,7 @@
         card.style.transform = `perspective(900px) rotateY(${x/6}deg) rotateX(${y/12}deg)`;
       };
       window.addEventListener('deviceorientation', onOrient, {passive:true});
-
-      // Fallback mouse
+      // fallback mouse
       let mouseBound = false;
       setTimeout(()=>{
         if(!hasOrientation && !mouseBound){
@@ -329,6 +464,82 @@
     document.querySelectorAll('.faq-item').forEach(it=>{
       it.querySelector('.faq-q').addEventListener('click', ()=> it.classList.toggle('open'));
     });
+
+    // ===== Depoimentos: autoplay contínuo + drag, loop infinito =====
+    (function(){
+      const scroller = document.getElementById('depoScroller');
+      if(!scroller) return;
+
+      // duplica os itens para loop sem tranco
+      const originals = Array.from(scroller.children);
+      originals.forEach(n => scroller.appendChild(n.cloneNode(true)));
+
+      // dots
+      const dotsWrap = document.querySelector('.depo-dots');
+      if(dotsWrap){
+        dotsWrap.innerHTML = originals.map(()=>'<i></i>').join('');
+      }
+      const dots = dotsWrap ? dotsWrap.querySelectorAll('i') : null;
+
+      // autoplay
+      let speed = 0.5; // ajuste a seu gosto
+      let playing = true, rafId = null, last = 0;
+
+      const step = (t)=>{
+        if(!playing){ last = t; rafId = requestAnimationFrame(step); return; }
+        const dt = Math.min(32, t - last || 16);
+        last = t;
+        scroller.scrollLeft += speed * dt; // pixels/frame
+        const half = scroller.scrollWidth / 2; // duplicado
+        if(scroller.scrollLeft >= half){ scroller.scrollLeft -= half; }
+        updateDots();
+        rafId = requestAnimationFrame(step);
+      };
+
+      const updateDots = ()=>{
+        if(!dots) return;
+        const half = scroller.scrollWidth / 2;
+        const progress = (scroller.scrollLeft % half) / half; // 0..1
+        const idx = Math.round(progress * (originals.length-1));
+        dots.forEach((d,i)=>d.classList.toggle('active', i===idx));
+      };
+
+      // pausa ao interagir / retoma depois
+      const pause = ()=> playing = false;
+      const resume = ()=> { playing = true; };
+
+      let dragging = false, startX = 0, startLeft = 0;
+      const onDown = (e)=>{
+        dragging = true; pause();
+        startX = (e.touches ? e.touches[0].clientX : e.clientX);
+        startLeft = scroller.scrollLeft;
+      };
+      const onMove = (e)=>{
+        if(!dragging) return;
+        const x = (e.touches ? e.touches[0].clientX : e.clientX);
+        scroller.scrollLeft = startLeft - (x - startX);
+      };
+      const onUp = ()=>{
+        if(!dragging) return;
+        dragging = false;
+        setTimeout(resume, 400);
+      };
+      scroller.addEventListener('pointerdown', onDown);
+      window.addEventListener('pointermove', onMove, {passive:false});
+      window.addEventListener('pointerup', onUp);
+      scroller.addEventListener('mouseenter', pause);
+      scroller.addEventListener('mouseleave', ()=> setTimeout(resume, 300));
+
+      // pausa quando aba não está visível
+      document.addEventListener('visibilitychange', ()=> playing = (document.visibilityState === 'visible'));
+
+      // respeita redução de movimento
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) speed = 0;
+
+      // start
+      rafId = requestAnimationFrame(step);
+    })();
   </script>
 </body>
 </html>
