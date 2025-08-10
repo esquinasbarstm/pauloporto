@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Paulo Porto – Uber em Guarapari | Reserve sua viagem 24h</title>
+  <meta name="description" content="Motorista de Uber em Guarapari com Virtus confortável. Corridas locais e intermunicipais, aeroporto de Vitória e agendamentos 24h. Chame no WhatsApp e garanta seu horário!" />
+  <meta name="theme-color" content="#081222" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keywords" content="Uber Guarapari, Corrida Guarapari, Motorista Guarapari, Viagem Guarapari, Vitória, Vila Velha, Aeroporto Vitória, Virtus Uber ES" />
+  <meta property="og:title" content="Paulo Porto – Uber em Guarapari" />
+  <meta property="og:description" content="Viagens confortáveis e seguras em Guarapari e região. Chame agora no WhatsApp!" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="img/preview.jpg" />
+  <meta property="og:locale" content="pt_BR" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TaxiService",
+    "name": "Paulo Porto – Uber em Guarapari",
+    "areaServed": ["Guarapari", "Vitória", "Vila Velha", "Anchieta", "ES"],
+    "provider": {"@type": "Person", "name": "Paulo Porto"},
+    "telephone": "+55 27 99517-6286",
+    "url": "https://wa.me/5527995176286",
+    "availableChannel": {"@type": "ServiceChannel","serviceLocation": {"@type": "Place","address": {"@type":"PostalAddress","addressLocality":"Guarapari","addressRegion":"ES","addressCountry":"BR"}}}
+  }
+  </script>
+  <style>
+    :root{
+      --bg:#081222; --bg2:#0d1b35; --card:#0e1b3a; --card2:#0f264e;
+      --text:#eef3ff; --muted:#a8b2ca; --accent:#00d68f; --accent2:#6aa5ff; --accent3:#ffd166;
+      --stroke:#172a59; --ok:#22c55e; --warn:#ffc107; --danger:#ef4444;
+      --shadow:0 24px 70px rgba(0,0,0,.5);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif; color:var(--text);
+      background: radial-gradient(1000px 600px at 110% -10%, rgba(106,165,255,.25), transparent 50%),
+                  radial-gradient(900px 600px at -10% 120%, rgba(0,214,143,.18), transparent 50%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* ===== HEADER ===== */
+    .header{position:sticky; top:0; z-index:80; backdrop-filter:saturate(1.2) blur(10px);
+      background:linear-gradient(90deg, rgba(8,18,34,.8), rgba(10,24,54,.6)); border-bottom:1px solid var(--stroke)}
+    .wrap{max-width:1080px; margin:0 auto; padding:14px 16px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:900; letter-spacing:.2px}
+    .brand .dot{width:12px; height:12px; border-radius:999px; background:conic-gradient(from 0deg, var(--accent), var(--accent2), var(--accent3), var(--accent)); box-shadow:0 0 16px rgba(0,214,143,.6)}
+    .cta{display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg, var(--accent), #40f1be); color:#062117;
+      font-weight:900; padding:12px 16px; border-radius:14px; box-shadow:var(--shadow); transition:transform .2s ease, filter .2s ease}
+    .cta:active{transform:scale(.98)}
+
+    /* ===== HERO ===== */
+    .hero{padding:26px 16px 12px; isolation:isolate}
+    .tag{display:inline-flex; align-items:center; gap:6px; font-size:12px; color:#cfe9ff; background:rgba(106,165,255,.14);
+      border:1px solid rgba(106,165,255,.3); padding:6px 10px; border-radius:999px}
+    h1{font-size:clamp(28px, 7vw, 44px); line-height:1.05; margin:12px 0 8px; letter-spacing:.2px}
+    .lead{color:var(--muted); font-size:clamp(14px, 4vw, 18px)}
+
+    /* Animated gradient blobs */
+    .blobs{position:absolute; inset:0; z-index:-1; overflow:hidden}
+    .blob{position:absolute; width:44vw; height:44vw; filter:blur(40px); opacity:.28; border-radius:50%; mix-blend:screen; animation:float 14s ease-in-out infinite}
+    .b1{background:#2abfff; top:-10vh; left:-10vw}
+    .b2{background:#00d68f; bottom:-12vh; right:-10vw; animation-delay:-4s}
+    .b3{background:#ffd166; top:40vh; right:20vw; animation-delay:-8s}
+    @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(0,-6vh) scale(1.08)}}
+
+    .hero-grid{display:grid; gap:16px; grid-template-columns:1fr; margin-top:18px}
+    .perfil{display:grid; grid-template-columns:86px 1fr; gap:14px; align-items:center; background:linear-gradient(180deg,var(--card), var(--card2)); border:1px solid var(--stroke); border-radius:20px; padding:14px; box-shadow:var(--shadow)}
+    .avatar-lg{width:86px; height:86px; border-radius:18px; overflow:hidden; border:1px solid var(--stroke); background:#0b162e}
+    .avatar-lg img{width:100%; height:100%; object-fit:cover}
+    .perfil .name{font-weight:900; font-size:18px}
+    .perfil .sub{color:var(--muted); font-size:13px}
+    .perfil .mini-cta{margin-top:8px; display:inline-flex; align-items:center; gap:8px; background:linear-gradient(90deg, var(--accent), #40f1be); color:#062117; font-weight:900; padding:10px 12px; border-radius:12px}
+    .sketchfab-embed-wrapper{position:relative; width:100%; padding-top:64%; border-radius:20px; overflow:hidden; border:1px solid var(--stroke);
+      background:linear-gradient(180deg,#0b162e,#0e214a); box-shadow:var(--shadow)}
+    .sketchfab-embed-wrapper iframe{position:absolute; inset:0; width:100%; height:100%}
+    .sketchfab-embed-wrapper{position:relative; width:100%; padding-top:64%; border-radius:20px; overflow:hidden; border:1px solid var(--stroke);
+      background:linear-gradient(180deg,#0b162e,#0e214a); box-shadow:var(--shadow)}
+    .sketchfab-embed-wrapper iframe{position:absolute; inset:0; width:100%; height:100%}
+
+    .metrics{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .metric{flex:1 1 auto; min-width:130px; display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.04); border:1px solid var(--stroke);
+      padding:10px 12px; border-radius:14px}
+
+    /* ===== CARDS/SECTIONS ===== */
+    section{padding:28px 16px}
+    .card{background:linear-gradient(180deg,var(--card), var(--card2)); border:1px solid var(--stroke); border-radius:20px; padding:16px; box-shadow:var(--shadow)}
+
+    /* Sobre */
+    .sobre{display:grid; grid-template-columns:86px 1fr; gap:14px; align-items:center}
+    .avatar{width:86px; height:86px; border-radius:18px; border:1px solid var(--stroke); overflow:hidden; background:#0b162e}
+    .avatar img{width:100%; height:100%; object-fit:cover}
+    .pill-list{display:flex; gap:8px; flex-wrap:wrap; margin-top:8px}
+    .pill{font-size:12px; color:#cfe9ff; background:rgba(106,165,255,.12); border:1px solid rgba(106,165,255,.25); padding:6px 10px; border-radius:999px}
+
+    /* Serviços */
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .service{position:relative; display:flex; gap:10px; align-items:flex-start; background:rgba(17,34,72,.5); border:1px solid var(--stroke); padding:14px; border-radius:16px; overflow:hidden}
+    .service::after{content:""; position:absolute; inset:auto -20% -40% auto; width:120px; height:120px; background:radial-gradient(80px 80px, rgba(0,214,143,.2), transparent 70%); transform:rotate(25deg)}
+    .icon{width:28px; height:28px}
+    .service h4{margin:0 0 4px; font-size:15px}
+    .service p{margin:0; color:var(--muted); font-size:13px}
+
+    /* Pricing / Rotas populares (marketing) */
+    .pricing{display:grid; grid-template-columns:1fr; gap:12px}
+    .price{background:linear-gradient(180deg,#0f234a,#103061); border:1px solid var(--stroke); border-radius:16px; padding:14px}
+    .price h4{margin:0 0 6px}
+    .small{font-size:12px; color:var(--muted)}
+
+    /* Depoimentos (slider) */
+    .slider{position:relative; overflow:hidden}
+    .track{display:flex; gap:10px; will-change:transform; animation:slide 22s linear infinite}
+    .depo{min-width:78%; background:rgba(15,31,64,.6); border:1px solid var(--stroke); border-radius:16px; padding:14px}
+    .stars{letter-spacing:1px}
+    @keyframes slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* CTA ribbon */
+    .ribbon{margin-top:10px; display:flex; gap:10px; align-items:center; background:linear-gradient(90deg, var(--accent3), var(--accent)); color:#082010; padding:10px 12px; border-radius:14px; font-weight:900}
+
+    /* WhatsApp sticky bar */
+    .stickyCTA{position:fixed; inset:auto 12px 12px; z-index:90; display:flex; justify-content:center}
+    .stickyCTA a{flex:1; max-width:720px; display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(90deg, var(--accent), #4dffbe); color:#072319; font-weight:900; padding:14px 16px; border-radius:18px; box-shadow:var(--shadow)}
+
+    /* FAQ */
+    .faq-item{border:1px solid var(--stroke); border-radius:14px; overflow:hidden}
+    .faq-q{width:100%; text-align:left; background:rgba(255,255,255,.04); color:var(--text); border:0; padding:14px; font-weight:700}
+    .faq-a{max-height:0; overflow:hidden; transition:max-height .35s ease; padding:0 14px}
+    .faq-item.open .faq-a{max-height:200px; padding:10px 14px 14px}
+
+    /* Footer */
+    footer{padding:32px 16px 86px; color:var(--muted)}
+    .foot{display:flex; flex-direction:column; gap:6px; align-items:center; text-align:center}
+
+    /* Reveal */
+    [data-reveal]{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+    [data-reveal].visible{opacity:1; transform:none}
+
+    /* Desktop */
+    @media(min-width:768px){
+      .hero-grid{grid-template-columns:1.05fr .95fr}
+      .grid{grid-template-columns:repeat(3,1fr)}
+      .depo{min-width:40%}
+      .pricing{grid-template-columns:repeat(3,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="wrap row">
+      <div class="brand" aria-label="Marca Paulo Porto"><span class="dot" aria-hidden="true"></span><span>Paulo Porto</span></div>
+      <a class="cta" href="https://wa.me/5527995176286?text=Ol%C3%A1%20Paulo!%20Quero%20agendar%20uma%20corrida." target="_blank" rel="noopener" aria-label="Chamar no WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M20 3.9A10.7 10.7 0 0 0 3.3 17.7L2 22l4.4-1.2A10.7 10.7 0 0 0 21.9 10.7 10.6 10.6 0 0 0 20 3.9Zm-8.3 15.2h-.1A8.9 8.9 0 0 1 6.6 18L6 17.7l-2.6.7.7-2.5-.4-.7A8.9 8.9 0 1 1 11.7 19Zm4.9-6.7c-.3-.2-1.8-.9-2.1-1s-.5-.2-.8.2-.9 1-1.1 1.2-.4.2-.7 0a7.2 7.2 0 0 1-2.1-1.3 7.8 7.8 0 0 1-1.4-1.8c-.2-.4 0-.6.2-.8l.5-.7c.1-.2.2-.4.2-.6a.8.8 0 0 0 0-.6c-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.6a1.2 1.2 0 0 0-.9.4 3.6 3.6 0 0 0-1.1 2.7 6.2 6.2 0 0 0 1.4 3.3 14.3 14.3 0 0 0 5.5 4.8 18.7 18.7 0 0 0 1.8.7 4.3 4.3 0 0 0 2 .1 3.2 3.2 0 0 0 2.1-1.5c.3-.8.3-1.4.2-1.5s-.3-.2-.6-.4Z"/></svg>
+        WhatsApp agora
+      </a>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <div class="blobs"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+    <span class="tag" data-reveal>Guarapari – ES • Atendimento 24h • Resposta rápida</span>
+    <h1 data-reveal style="transition-delay:.05s">Viagens confortáveis e seguras em Guarapari e região</h1>
+    <p class="lead" data-reveal style="transition-delay:.1s">Corridas locais, intermunicipais e traslados para aeroportos. <strong>Reserve agora</strong> e garanta seu horário.</p>
+
+    $1
+      <!-- Destaque do Paulo no topo -->
+      <div class="perfil" data-reveal>
+        <div class="avatar-lg"><img src="img/paulo.jpg" alt="Foto de Paulo Porto" loading="eager"/></div>
+        <div>
+          <div class="name">Paulo Porto</div>
+          <div class="sub">Uber em Guarapari • 24h • Pontualidade</div>
+          <a class="mini-cta" href="https://wa.me/5527995176286?text=Ol%C3%A1%20Paulo!%20Quero%20agendar%20uma%20corrida." target="_blank" rel="noopener">📲 Chamar agora</a>
+        </div>
+      </div>
+      <!-- 360º Virtus (Sketchfab) -->
+      <div class="sketchfab-embed-wrapper" id="virtus360" aria-label="Visualização 360 do Volkswagen Virtus" data-tilt>
+        <iframe title="Volkswagen Polo Virtus 2018-2020" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"
+          allow="autoplay; fullscreen; xr-spatial-tracking" 
+          src="https://sketchfab.com/models/f20e5d4546a84c09bf02e151492b9e18/embed?autostart=1&preload=1&autospin=0.2&ui_theme=dark&ui_infos=0&ui_inspector=0&ui_watermark=0">
+        </iframe>
+      </div>
+
+      <!-- Provas & benefícios -->
+      <div class="card">
+        <div class="metrics">
+          <div class="metric">🧼 Higienização diária</div>
+          <div class="metric">⏱️ Pontualidade</div>
+          <div class="metric">🧳 Aeroporto VIX</div>
+        </div>
+        <div class="ribbon">🔥 Hoje: <span style="opacity:.9">vagas limitadas para agendamento</span> • <span style="opacity:.9">garanta seu horário</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sobre -->
+  <section class="wrap">
+    <div class="card sobre" data-reveal>
+      <div class="avatar"><img src="img/paulo.jpg" alt="Foto de Paulo Porto" loading="lazy"/></div>
+      <div>
+        <h3 style="margin:0 0 6px">Sobre o motorista</h3>
+        <p style="margin:0; color:var(--muted)">Sou o <strong>Paulo Porto</strong>, motorista de aplicativo em Guarapari. Segurança, conforto e <strong>pontualidade</strong> para corridas locais, intermunicipais e traslados. Carro sempre limpo e atendimento cordial.</p>
+        <div class="pill-list"><span class="pill">CNH regular</span><span class="pill">Experiência na região</span><span class="pill">Atendimento 24h</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">Serviços</h3>
+    <div class="grid" data-reveal>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 11h14l1 5H4l1-5Zm2-6h10l3 5H4l3-5Zm1 14h8v2H8v-2Z"/></svg><div><h4>Corridas locais</h4><p>Atendimento rápido em toda Guarapari.</p></div></div>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 5h-2v6h6v-2h-4V7Z"/></svg><div><h4>Agendamentos</h4><p>Reserve com antecedência e evite espera.</p></div></div>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6Zm2 4h14l-1 8H6l-1-8Z"/></svg><div><h4>Aeroporto</h4><p>Traslado para o Aeroporto de Vitória (VIX).</p></div></div>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v10H4V6Zm-1 12h18v2H3v-2Z"/></svg><div><h4>Viagens intermunicipais</h4><p>Vitória, Vila Velha, Anchieta e outras regiões.</p></div></div>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm7-3h-2V3h-2v2H9V3H7v2H5a2 2 0 0 0-2 2v2h18V7a2 2 0 0 0-2-2Z"/></svg><div><h4>Atendimento 24h</h4><p>Disponível sob chamada ou agendamento.</p></div></div>
+      <div class="service"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5 4h14v2H5V4Zm0 7h14v2H5v-2Zm0 7h14v2H5v-2Z"/></svg><div><h4>Empresas & eventos</h4><p>Corridas programadas para sua necessidade.</p></div></div>
+    </div>
+  </section>
+
+  <!-- Rotas populares (marketing) -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">Rotas populares</h3>
+    <div class="pricing" data-reveal>
+      <div class="price"><h4>Guarapari ➜ Vitória (VIX)</h4><div class="small">Agende ida/volta • Horários flexíveis</div></div>
+      <div class="price"><h4>Guarapari ➜ Vila Velha</h4><div class="small">Conforto e segurança no trajeto</div></div>
+      <div class="price"><h4>Guarapari ➜ Anchieta</h4><div class="small">Melhor custo-benefício</div></div>
+    </div>
+  </section>
+
+  <!-- Depoimentos slider -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">O que os clientes dizem</h3>
+    <div class="slider card" data-reveal>
+      <div class="track">
+        <div class="depo"><div class="stars">★★★★★</div><p>“Motorista atencioso e carro impecável. Cheguei ao VIX no horário certinho!” – <strong>Ana C.</strong></p></div>
+        <div class="depo"><div class="stars">★★★★★</div><p>“Viagem tranquila até Vila Velha. Recomendo demais o Paulo.” – <strong>Rafael M.</strong></p></div>
+        <div class="depo"><div class="stars">★★★★★</div><p>“Atendimento 24h salvou minha madrugada. Excelente!” – <strong>Luiz A.</strong></p></div>
+        <div class="depo"><div class="stars">★★★★★</div><p>“Pontual e educado. Voltarei a contratar.” – <strong>Bianca T.</strong></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="wrap">
+    <h3 style="margin:0 0 10px">Dúvidas frequentes</h3>
+    <div class="card" data-reveal>
+      <div class="faq-item"><button class="faq-q">Como faço para agendar?</button><div class="faq-a"><p>Toque em “WhatsApp agora”, diga origem/destino e horário. Se preferir, envie localização.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Quais formas de pagamento?</button><div class="faq-a"><p>PIX, dinheiro e, sob consulta, transferência.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Atende de madrugada?</button><div class="faq-a"><p>Sim, 24h mediante chamada ou agendamento.</p></div></div>
+    </div>
+  </section>
+
+  <!-- CTA Sticky -->
+  <div class="stickyCTA">
+    <a href="https://wa.me/5527995176286?text=Ol%C3%A1%20Paulo!%20Quero%20agendar%20uma%20corrida." target="_blank" rel="noopener" aria-label="Falar com Paulo no WhatsApp">
+      <span>📲 Chamar no WhatsApp</span>
+      <strong>Agende agora</strong>
+    </a>
+  </div>
+
+  <footer>
+    <div class="wrap foot">
+      <div>📍 <strong>Guarapari – ES</strong></div>
+      <div>📞 <a href="tel:27995176286">(27) 99517-6286</a></div>
+      <div>© <span id="year"></span> Paulo Porto • Todos os direitos reservados</div>
+    </div>
+  </footer>
+
+  <script>
+    // Ano no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal simples
+    const io = new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible'); io.unobserve(e.target)}})},{threshold:.1});
+    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+    // Tilt/parallax suave do container 3D no smartphone (device orientation)
+    (function(){
+      const card = document.querySelector('[data-tilt]');
+      if(!card) return;
+      let support = false;
+      window.addEventListener('deviceorientation', (e)=>{ support = true; const {beta, gamma} = e; const x = Math.max(-10, Math.min(10, (gamma||0))); const y = Math.max(-10, Math.min(10, (beta||0)-45)); card.style.transform = `perspective(900px) rotateY(${x/6}deg) rotateX(${y/12}deg)`; }, {passive:true});
+      // fallback para desktop / sem sensores: parallax com mouse
+      if(!support){
+        card.addEventListener('mousemove', (ev)=>{
+          const r = card.getBoundingClientRect();
+          const cx = (ev.clientX - r.left)/r.width - .5;
+          const cy = (ev.clientY - r.top)/r.height - .5;
+          card.style.transform = `perspective(900px) rotateY(${cx*6}deg) rotateX(${-cy*4}deg)`;
+        });
+        card.addEventListener('mouseleave', ()=> card.style.transform = 'none');
+      }
+    })();
+
+    // FAQ toggle
+    document.querySelectorAll('.faq-item').forEach(it=>{
+      const q = it.querySelector('.faq-q');
+      q.addEventListener('click', ()=>{ it.classList.toggle('open'); });
+    });
+  </script>
+</body>
+</html>
